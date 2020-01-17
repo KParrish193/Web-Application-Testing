@@ -16,17 +16,30 @@ function App() {
     alert("NEW BATTER")
     setStrikeCount(0);
     setBallCount(0);
-    setFoulCount(0)
-  }
+    setFoulCount(0);
+  };
 
+  const out = () => {
+    setOutCount(outCount + 1);
+    newBatter();
+    if(outCount === 2) {
+      alert("3_OUTS! SWITCH TEAMS")
+      setOutCount(0);
+    }
+    return out;
+  };
 
   const strike = () => {
       setStrikeCount(strikeCount + 1);
   if (strikeCount === 2) {
       alert("THREE STRIKES! YOU'RE OUT!")
-      setOutCount(outCount +1);
+      setOutCount(outCount + 1);
       newBatter();
     };
+    if(strikeCount === 2 && outCount === 2) {
+      alert("3_OUTS! SWITCH TEAMS")
+      setOutCount(0);
+    }
     return strike;
   };
 
@@ -48,30 +61,20 @@ function App() {
       setStrikeCount(strikeCount);
     }
     return foul;
-  }
+  };
 
   const hit = () => {
     setHitCount(hitCount + 1);
     newBatter();
     return hit
-  }
-
-  const out = () => {
-    setOutCount(outCount + 1);
-    if(outCount === 2) {
-      alert("3_OUTS! SWITCH TEAMS")
-      newBatter();
-      setOutCount(0);
-    }
-    return out
-  }
+  };
 
   const reset = () => {
     setOutCount(0)
     setBallCount(0)
     setStrikeCount(0)
     setFoulCount(0)
-  }
+  };
 
   return (
     <div className="App">

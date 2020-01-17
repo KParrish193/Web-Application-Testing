@@ -43,7 +43,6 @@ const Displaybox = styled.div`
 
 
 const Display = (props) => {
-    console.log(props)
     return(
         <BoardContainer>
             <h1>At Bat</h1>
