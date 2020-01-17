@@ -11,24 +11,30 @@ function App() {
   const [foulCount, setFoulCount] = useState(0);
   const [outCount, setOutCount] = useState(0);
   const [hitCount, setHitCount] = useState(0);
+  
+  const newBatter = () => {
+    alert("NEW BATTER")
+    setStrikeCount(0);
+    setBallCount(0);
+    setFoulCount(0)
+  }
 
 
   const strike = () => {
       setStrikeCount(strikeCount + 1);
-  if (strikeCount > 2) {
-      setStrikeCount(0);
-      setBallCount(0);
+  if (strikeCount === 2) {
+      alert("THREE STRIKES! YOU'RE OUT!")
       setOutCount(outCount +1);
+      newBatter();
     };
     return strike;
   };
 
   const ball = () => {
       setBallCount(ballCount + 1);
-  if (ballCount > 3) {
-      alert("BATTER_TAKE_A_BASE!")
-      setStrikeCount(0);
-      setBallCount(0);
+  if (ballCount === 3) {
+      alert("BATTER TAKE A BASE!")
+      newBatter();
     }
   return ball;
   };
@@ -38,7 +44,7 @@ function App() {
     if(strikeCount < 2) {
       setStrikeCount(strikeCount + 1);
     } else { 
-      alert("FOUL_BALL!")
+      alert("FOUL BALL!")
       setStrikeCount(strikeCount);
     }
     return foul;
@@ -46,19 +52,25 @@ function App() {
 
   const hit = () => {
     setHitCount(hitCount + 1);
-    setStrikeCount(0);
-    setBallCount(0);
+    newBatter();
     return hit
   }
 
   const out = () => {
     setOutCount(outCount + 1);
-    setStrikeCount(0);
-    setBallCount(0);
-    if(out > 2) {
+    if(outCount === 2) {
       alert("3_OUTS! SWITCH TEAMS")
+      newBatter();
+      setOutCount(0);
     }
     return out
+  }
+
+  const reset = () => {
+    setOutCount(0)
+    setBallCount(0)
+    setStrikeCount(0)
+    setFoulCount(0)
   }
 
   return (
@@ -74,6 +86,7 @@ function App() {
         foul = {foul}
         hit = {hit}
         out = {out}
+        reset = {reset}
         />
     </div>
   );

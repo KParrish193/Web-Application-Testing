@@ -9,6 +9,7 @@ const Dashboard = (props) => {
             <button onClick={props.foul} className="foul" > Add Foul </button>
             <button onClick={props.hit} className="hit" > Add Hit </button>
             <button onClick={props.out} className="hit" > Add Out </button>
+            <button onClick={props.reset} className="reset" > Reset All</button>
         </div>
     );
 };
